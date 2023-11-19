@@ -34,13 +34,16 @@ const verifyToken = async (req, res, next) => {
   })
 }
 
-const client = new MongoClient(process.env.DB_URI, {
+
+const uri = `mongodb+srv://${process.env.db_user}:${process.env.db_pass}@cluster0.dqsrrse.mongodb.net/?retryWrites=true&w=majority`;
+const client = new MongoClient(uri, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
     deprecationErrors: true,
-  },
-})
+  }
+});
+
 async function run() {
   try {
     // auth related api

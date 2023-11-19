@@ -4,5 +4,7 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [],
-}
+ daisyui: {
+     themes: ['cmyk'],
+  },
+ plugins: [require("daisyui")],}
