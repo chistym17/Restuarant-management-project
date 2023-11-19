@@ -5,11 +5,13 @@ import Banner from '../pages/Home/Banner'
 import Container from '../components/Shared/Container'
 import Category from '../pages/Home/Category'
 import PopularMenu from '../pages/Home/PopularMenu'
+import AboutUs from '../pages/Home/AboutUs'
 const Main = () => {
   return (
     <div>
       <Navbar />
       <Banner></Banner>
+      <AboutUs></AboutUs>
       <Container>   <Category></Category>
       </Container>
      <Container><PopularMenu></PopularMenu></Container>
