@@ -1,27 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import AxiosBase from '../AxiosConfig';
-import useAuth from '../../hooks/useAuth';
 
 const GetsingleItem = ({ category }) => {
-    const { loading, setLoading } = useAuth()
+    const [menu, setMenu] = useState([]);
 
-    setLoading(true)
-    const [menu, setmenu] = useState()
-    AxiosBase.get(`/menu/${category}`).then(res => {
-        setmenu(res.data)
+    useEffect(() => {
+        const fetchMenu = async () => {
+            try {
+                const response = await AxiosBase.get(`/menu/${category}`);
+                setMenu(response.data);
+            } catch (error) {
+                console.error('Error fetching menu:', error);
+            }
+        };
 
-        setLoading(false)
-    }
-    )
-
-
-
+        fetchMenu();
+    }, [category]);
 
     return menu;
-
-
 };
 
 export default GetsingleItem;
-
-// ``
