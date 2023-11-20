@@ -9,7 +9,7 @@ const Navbar = () => {
     <div className='fixed w-full bg-gray text-white z-10 bg-opacity-20  shadow-sm'>
       <div className=' border-b-[1px]'>
         <Container>
-          <div className='flex flex-row items-center justify-between gap-3 md:gap-0'>
+          <div className='flex flex-row items-center  justify-between gap-3 md:gap-0'>
 
             {/* Restaurant Name on the Left */}
             <div className='text-lg font-bold ml-4'>
@@ -17,7 +17,7 @@ const Navbar = () => {
             </div>
 
             {/* Left-side Links */}
-            <div className='flex space-x-4'>
+            <div className='flex space-x-4 '>
               <Link to='/home'>Home</Link>
               <Link to='/contact-us'>Contact Us</Link>
               <Link to='/dashboard'>Dashboard</Link>
