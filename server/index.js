@@ -45,22 +45,72 @@ const client = new MongoClient(uri, {
 });
 
 async function run() {
+
+  const RestaurantDB = client.db("RestaurantDB").collection("MenuDB");
+
+
   try {
+
+
+app.get('/menu',async(req,res)=>{
+const menuitems= await RestaurantDB.find().toArray()
+res.send(menuitems)
+
+})
+
+
+
+app.get('/menu/:category', async (req, res) => {
+  const category = req.params.category;
+  const query={category:category}
+  try {
+    const menuItems = await RestaurantDB.find(query).toArray();
+
+    if (menuItems.length > 0) {
+      res.send(menuItems);
+    } else {
+      res.status(404).json({ message: 'No menu items found for the specified category.' });
+    }
+  } catch (error) {
+    console.error('Error:', error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on http://localhost:${PORT}`);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     // auth related api
-    app.post('/jwt', async (req, res) => {
-      const user = req.body
-      console.log('I need a new jwt', user)
-      const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
-        expiresIn: '365d',
-      })
-      res
-        .cookie('token', token, {
-          httpOnly: true,
-          secure: process.env.NODE_ENV === 'production',
-          sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
-        })
-        .send({ success: true })
-    })
+    // app.post('/jwt', async (req, res) => {
+    //   const user = req.body
+    //   console.log('I need a new jwt', user)
+    //   const token = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {
+    //     expiresIn: '365d',
+    //   })
+    //   res
+    //     .cookie('token', token, {
+    //       httpOnly: true,
+    //       secure: process.env.NODE_ENV === 'production',
+    //       sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'strict',
+    //     })
+    //     .send({ success: true })
+    // })
 
     // Logout
     app.get('/logout', async (req, res) => {
