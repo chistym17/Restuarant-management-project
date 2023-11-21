@@ -4,13 +4,14 @@ import { useContext } from 'react'
 import { AuthContext } from '../../providers/AuthProvider'
 
 const Login = () => {
-const {signInWithGoogle,createUser}=useContext(AuthContext)
+const {signInWithGoogle,signIn}=useContext(AuthContext)
 
 const handleSubmit=e=>{
+e.preventDefault()
 const form=e.target
 const email=form.email
 const password=form.password
-createUser(email,password)
+signIn(email,password)
 .then(res=>console.log(res.data))
 }
 
@@ -75,6 +76,7 @@ signInWithGoogle()
             <button
               type='submit'
               className='bg-rose-500 w-full rounded-md py-3 text-white'
+               onClick={handleSubmit}
             >
               Continue
             </button>

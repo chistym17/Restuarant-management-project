@@ -5,6 +5,8 @@ import banner2 from '../../../public/assets/shop/banner2.jpg'
 import Cover from '../../components/Shared/Cover/Cover';
 import Container from '../../components/Shared/Container';
 import Footer from '../../components/Shared/Footer/Footer';
+import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 const OrderFood = () => {
   const [category, setCategory] = useState('salad');
   const [menuItems, setMenuItems] = useState([]);
@@ -16,13 +18,28 @@ const OrderFood = () => {
   };
 
   useEffect(() => {
-    fetchMenuItems(category);  // Fetch menu items when component mounts
+    fetchMenuItems(category);  
   }, [category]);
 
   const handleCategoryClick = (selectedCategory) => {
     setCategory(selectedCategory);
-    fetchMenuItems(selectedCategory);  // Fetch menu items when category changes
+    fetchMenuItems(selectedCategory); 
   };
+
+const {user}=useAuth()
+
+const handleCart=(id)=>{
+
+const item={
+cartof:user.email,
+menuid:id
+}
+AxiosBase.post('/cart',item)
+.then(res=>console.log(res.data))
+
+}
+
+
 
   return (
     <div>
@@ -75,6 +92,7 @@ const OrderFood = () => {
             <p className="text-gray-500">{item.recipe}</p>
             <p className="text-primary font-semibold">${item.price.toFixed(2)}</p>
             {/* Add more details as needed */}
+              <button className='btn btn-primary w-full mt-1' onClick={()=>handleCart(item._id)}>Add to Cart</button>
           </div>
         ))}
       </div>

@@ -18,10 +18,10 @@ const Navbar = () => {
 
             {/* Left-side Links */}
             <div className='flex space-x-4 '>
-              <Link to='/home'>Home</Link>
+              <Link to='/'>Home</Link>
               <Link to='/contact-us'>Contact Us</Link>
               <Link to='/dashboard'>Dashboard</Link>
-              <Link to='/our-menu'>Our Menu</Link>
+              <Link to='/menu'>Our Menu</Link>
               <Link to='/order'>Order Foods</Link>
             </div>
 
