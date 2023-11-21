@@ -47,7 +47,7 @@ const client = new MongoClient(uri, {
 async function run() {
 
   const RestaurantDB = client.db("RestaurantDB").collection("MenuDB");
-
+  const CartDB = client.db("CartDB").collection("CartDB");
 
   try {
 
@@ -76,6 +76,26 @@ app.get('/menu/:category', async (req, res) => {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 });
+
+app.post('/cart',async(req,res)=>{
+const item=req.body
+const result= await CartDB.insertOne(item)
+res.send(result)
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const PORT = 3000;
 app.listen(PORT, () => {
