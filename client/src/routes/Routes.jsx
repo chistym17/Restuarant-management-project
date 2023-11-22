@@ -8,6 +8,7 @@ import Menu from '../pages/Menu/Menu'
 import Container from '../components/Shared/Container'
 import OrderFood from '../pages/Order/OrderFood'
 import Dashboard from '../components/Dashboard/Dashboard'
+import AllUsers from '../components/Dashboard/AdminDash/AllUsers'
 
 export const router = createBrowserRouter([
   {
@@ -35,9 +36,13 @@ export const router = createBrowserRouter([
 
 {
     path: '/dash',
-    element: <Container><Dashboard></Dashboard></Container>,
-  },
+    element: <Container><Dashboard></Dashboard></Container>,  
 
+  },
+ {
+        path: '/users',
+        element: <Container><AllUsers></AllUsers></Container>,
+      },
 
 
   { path: '/login', element: <Login /> },
