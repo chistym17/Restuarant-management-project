@@ -9,6 +9,7 @@ import Container from '../components/Shared/Container'
 import OrderFood from '../pages/Order/OrderFood'
 import Dashboard from '../components/Dashboard/Dashboard'
 import AllUsers from '../components/Dashboard/AdminDash/AllUsers'
+import AdminRoute from './AdminRoute'
 
 export const router = createBrowserRouter([
   {
@@ -41,7 +42,7 @@ export const router = createBrowserRouter([
   },
  {
         path: '/users',
-        element: <Container><AllUsers></AllUsers></Container>,
+        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
       },
 
 

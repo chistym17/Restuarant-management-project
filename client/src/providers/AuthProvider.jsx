@@ -12,6 +12,7 @@ import {
   updateProfile,
 } from 'firebase/auth'
 import { app } from '../firebase/firebase.config'
+import AxiosBase from '../ServerConfig/AxiosConfig'
 
 export const AuthContext = createContext(null)
 const auth = getAuth(app)
@@ -21,7 +22,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
 
-  const createUser = async(email, password) => {
+  const createUser = async (email, password) => {
     setLoading(true)
     return await createUserWithEmailAndPassword(auth, email, password)
   }
@@ -57,6 +58,18 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser)
+      if (currentUser) {
+        AxiosBase.post('/jwt', { user: currentUser.email })
+          .then(res => {
+            if (res.data.token) {
+              localStorage.setItem('token', res.data.token)
+            }
+            else {
+              localStorage.removeItem('token')
+            }
+          })
+
+      }
       console.log('CurrentUser-->', currentUser)
       setLoading(false)
     })
