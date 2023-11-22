@@ -9,8 +9,8 @@ const {signInWithGoogle,signIn}=useContext(AuthContext)
 const handleSubmit=e=>{
 e.preventDefault()
 const form=e.target
-const email=form.email
-const password=form.password
+const email=form.email.value
+const password=form.password.value
 signIn(email,password)
 .then(res=>console.log(res.data))
 }
