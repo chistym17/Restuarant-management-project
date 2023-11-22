@@ -3,7 +3,7 @@ const app = express()
 require('dotenv').config()
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
-const { MongoClient, ServerApiVersion } = require('mongodb')
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
 const jwt = require('jsonwebtoken')
 const morgan = require('morgan')
 const port = process.env.PORT || 8000
@@ -77,6 +77,15 @@ app.get('/menu/:category', async (req, res) => {
   }
 });
 
+app.get('/cartitems',async(req,res)=>{
+const result= await CartDB.find().toArray()
+res.send(result)
+
+})
+
+
+
+
 app.post('/cart',async(req,res)=>{
 const item=req.body
 const result= await CartDB.insertOne(item)
@@ -85,7 +94,13 @@ res.send(result)
 })
 
 
+app.delete('/delete/:id',async(req,res)=>{
+const id=req.params.id
+const query={_id:new ObjectId(id)}
+const result= await CartDB.deleteOne(query)
+res.send(result)
 
+})
 
 
 
