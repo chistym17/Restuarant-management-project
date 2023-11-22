@@ -28,11 +28,14 @@ const OrderFood = () => {
 
 const {user}=useAuth()
 
-const handleCart=(id)=>{
+const handleCart=(id,name,image,price)=>{
 
 const item={
 cartof:user.email,
-menuid:id
+menuid:id,
+name:name,
+image,
+price
 }
 AxiosBase.post('/cart',item)
 .then(res=>console.log(res.data))
@@ -92,7 +95,7 @@ AxiosBase.post('/cart',item)
             <p className="text-gray-500">{item.recipe}</p>
             <p className="text-primary font-semibold">${item.price.toFixed(2)}</p>
             {/* Add more details as needed */}
-              <button className='btn btn-primary w-full mt-1' onClick={()=>handleCart(item._id)}>Add to Cart</button>
+              <button className='btn btn-primary w-full mt-1' onClick={()=>handleCart(item._id,item.name,item.image,item.price)}>Add to Cart</button>
           </div>
         ))}
       </div>
