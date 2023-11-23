@@ -49,6 +49,7 @@ const verifyToken = (req, res, next) => {
           return res.status(401).send({ message: 'unauthorized access' })
         }
         req.decoded = decoded;
+       console.log(decoded)
         next();
       })
     }
@@ -78,8 +79,9 @@ const verifyToken = (req, res, next) => {
 
  app.get('/admin/:email', verifyToken, async (req, res) => {
       const email = req.params.email;
-
-      if (email !== req.decoded.email) {
+       console.log(email)
+       console.log(req.decoded.user)
+      if (email !== req.decoded.user) {
         return res.status(403).send({ message: 'forbidden access' })
       }
 
@@ -89,6 +91,7 @@ const verifyToken = (req, res, next) => {
       if (user) {
         admin = user?.role === 'admin';
       }
+     console.log(admin)
       res.send({ admin });
     })
 
