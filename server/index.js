@@ -149,6 +149,18 @@ res.send(result)
 
 
 
+
+app.post('/menu',async(req,res)=>{
+const item=req.body
+const result= await RestaurantDB.insertOne(item)
+res.send(result)
+
+})
+
+
+
+
+
 app.post('/cart',async(req,res)=>{
 const item=req.body
 const result= await CartDB.insertOne(item)
