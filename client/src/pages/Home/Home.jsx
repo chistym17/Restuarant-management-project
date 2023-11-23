@@ -7,7 +7,7 @@ const Home = () => {
     <div>
 
 <Helmet>
-    <title>FoodBoss</title>
+    <title>FlavorFusion</title>
 
 
 </Helmet>

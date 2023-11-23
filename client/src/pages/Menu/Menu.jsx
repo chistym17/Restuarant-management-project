@@ -10,6 +10,7 @@ import SectionTitle from '../../components/Shared/SectionTitle/SectionTitle';
 import MenuCategory from '../../pages/Menu/MenuCategory';
 import Navbar from '../../components/Shared/Navbar/Navbar';
 import Footer from '../../components/Shared/Footer/Footer';
+import Container from '../../components/Shared/Container';
 
 
 const Menu = () => {
@@ -20,22 +21,31 @@ const Menu = () => {
     const pizza = menu.filter(item => item.category === 'pizza');
     const offered = menu.filter(item => item.category === 'offered');
     return (
-        <div className='my-10'>
-          <Navbar></Navbar>
+        <div className='mb-10'>
+            <Navbar></Navbar>
             <Helmet>
-                <title>Bistro Boss | Menu</title>
+                <title>FlavorFusion | Menu</title>
             </Helmet>
             <Cover img={menuImg} title="our menu"></Cover>
-            {/* main cover */}
-            <SectionTitle subHeading="Don't Miss" heading="Today's Offer"></SectionTitle>
-            {/* offered menu items */}
-            <MenuCategory items={offered}></MenuCategory>
-            {/* dessert menu items  */}
-            <MenuCategory items={desserts} title="dessert" img={dessertImg}></MenuCategory>
-            <MenuCategory items={pizza} title={"pizza"} img={pizzaImg}></MenuCategory>
-            <MenuCategory items={salad} title={"salad"} img={saladImg}></MenuCategory>
-            <MenuCategory items={soup} title={"soup"} img={soupImg}></MenuCategory>
-            <Footer></Footer>
+
+
+            <Container>
+                {/* main cover */}
+                <SectionTitle subHeading="Don't Miss" heading="Today's Offer"></SectionTitle>
+                {/* offered menu items */}
+                <MenuCategory items={offered}></MenuCategory>
+                {/* dessert menu items  */}
+                <MenuCategory items={desserts} title="dessert" img={dessertImg}></MenuCategory>
+                <MenuCategory items={pizza} title={"pizza"} img={pizzaImg}></MenuCategory>
+                <MenuCategory items={salad} title={"salad"} img={saladImg}></MenuCategory>
+                <MenuCategory items={soup} title={"soup"} img={soupImg}></MenuCategory>
+                <Footer></Footer>
+
+
+
+            </Container>
+
+
         </div>
     );
 };

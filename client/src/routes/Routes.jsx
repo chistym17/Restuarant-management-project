@@ -10,6 +10,7 @@ import OrderFood from '../pages/Order/OrderFood'
 import Dashboard from '../components/Dashboard/Dashboard'
 import AllUsers from '../components/Dashboard/AdminDash/AllUsers'
 import AdminRoute from './AdminRoute'
+import AllItems from '../components/Dashboard/AdminDash/AllItems'
 
 export const router = createBrowserRouter([
   {
@@ -27,7 +28,7 @@ export const router = createBrowserRouter([
 
   {
     path: '/menu',
-    element: <Container><Menu></Menu></Container>,
+    element: <Menu></Menu>,
   },
 
   {
@@ -35,15 +36,22 @@ export const router = createBrowserRouter([
     element: <OrderFood></OrderFood>,
   },
 
-{
+  {
     path: '/dash',
-    element: <Container><Dashboard></Dashboard></Container>,  
+    element: <Container><Dashboard></Dashboard></Container>,
 
   },
+  {
+    path: '/users',
+    element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
+  },
+
  {
-        path: '/users',
-        element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
-      },
+    path: '/items',
+    element: <AllItems></AllItems>,
+  },
+
+
 
 
   { path: '/login', element: <Login /> },
