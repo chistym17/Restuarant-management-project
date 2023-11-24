@@ -7,7 +7,7 @@ const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb')
 const jwt = require('jsonwebtoken')
 const morgan = require('morgan')
 const port = process.env.PORT || 8000
-
+const stripe = require("stripe")(process.env.Payment_Key)
 // middleware
 const corsOptions = {
   origin: ['http://localhost:5173', 'http://localhost:5174'],
@@ -35,6 +35,7 @@ async function run() {
   const RestaurantDB = client.db("RestaurantDB").collection("MenuDB");
   const CartDB = client.db("CartDB").collection("CartDB");
   const AllUsersDB = client.db("AllUserDB").collection("AllUserDB");
+  const paymentDB = client.db("paymentDB").collection("paymentDB");
   try {
 
 ///////token related///////////////////////
@@ -97,8 +98,35 @@ const verifyToken = (req, res, next) => {
 
 
 
+app.post("/create-payment-intent", async (req, res) => {
+  const {price} = req.body;
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: parseInt(price*100),
+    currency: "usd",
+    payment_method_types:['card']
+  });
 
+  res.send({
+    clientSecret: paymentIntent.client_secret,
+  });
+});
 
+ app.post('/payments', async (req, res) => {
+      const payment = req.body;
+      const paymentResult = await paymentDB.insertOne(payment);
+
+      //  carefully delete each item from the cart
+      console.log('payment info', payment);
+      const query = {
+        _id: {
+          $in: payment.cartIds.map(id => new ObjectId(id))
+        }
+      };
+
+      const deleteResult = await CartDB.deleteMany(query);
+
+      res.send({ paymentResult, deleteResult });
+    })
 
 
 
