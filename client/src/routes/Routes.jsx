@@ -11,6 +11,7 @@ import Dashboard from '../components/Dashboard/Dashboard'
 import AllUsers from '../components/Dashboard/AdminDash/AllUsers'
 import AdminRoute from './AdminRoute'
 import AllItems from '../components/Dashboard/AdminDash/AllItems'
+import StripePay from '../components/Dashboard/Payment/StripePay'
 
 export const router = createBrowserRouter([
   {
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
     element: <AllItems></AllItems>,
   },
 
+ {
+    path: '/pay',
+    element: <StripePay></StripePay>,
+  },
 
 
 
