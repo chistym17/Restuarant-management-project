@@ -7,9 +7,11 @@ import Container from '../../components/Shared/Container';
 import Footer from '../../components/Shared/Footer/Footer';
 import useAuth from '../../hooks/useAuth';
 import Swal from 'sweetalert2';
+import useCart from '../../hooks/useCart';
 const OrderFood = () => {
   const [category, setCategory] = useState('salad');
   const [menuItems, setMenuItems] = useState([]);
+   const [, refetch] = useCart();
 
   const fetchMenuItems = (selectedCategory) => {
     AxiosBase.get(`/menu/${selectedCategory}`)
@@ -49,6 +51,7 @@ const OrderFood = () => {
             showConfirmButton: false,
             timer: 1500
           });
+          refetch()
         }
 
 

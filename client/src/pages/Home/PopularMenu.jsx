@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MenuItem from "../../components/Shared/Menu/MenuItem";
 import Header from "../../components/Shared/Header/Header";
+import { Link } from "react-router-dom";
 
 
 const PopularMenu = () => {
@@ -27,7 +28,13 @@ const PopularMenu = () => {
                     ></MenuItem>)
                 }
             </div>
-            <button className="btn btn-outline border-0 border-b-4 mt-4 ml-[500px]">View Full Menu</button>
+
+            <Link to='/menu'>
+
+                <button className="btn btn-outline border-0 border-b-4 mt-6 ml-[600px]">View Full Menu</button>
+
+
+            </Link>
         </section>
     );
 };
