@@ -111,24 +111,36 @@ const CheckOutForm = () => {
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <CardElement
-                options={{
-                    style: {
-                        base: {
-                            fontSize: '16px',
-                            color: '#424770',
-                            '::placeholder': {
-                                color: '#aab7c4',
+         <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-6 rounded-md shadow-md">
+            <div className="mb-6">
+                <label className="block text-gray-700 text-sm font-semibold mb-2" htmlFor="card-element">
+                    Card Details
+                </label>
+                <div className="border border-gray-300 rounded p-3">
+                    <CardElement
+                        options={{
+                            style: {
+                                base: {
+                                    fontSize: '16px',
+                                    color: '#424770',
+                                    '::placeholder': {
+                                        color: '#aab7c4',
+                                    },
+                                },
+                                invalid: {
+                                    color: '#9e2146',
+                                },
                             },
-                        },
-                        invalid: {
-                            color: '#9e2146',
-                        },
-                    },
-                }}
-            />
-            <button type="submit" disabled={!stripe}>
+                        }}
+                    />
+                </div>
+            </div>
+
+            <button
+                type="submit"
+                disabled={!stripe}
+                className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none"
+            >
                 Pay
             </button>
         </form>

@@ -12,7 +12,7 @@ import AllUsers from '../components/Dashboard/AdminDash/AllUsers'
 import AdminRoute from './AdminRoute'
 import AllItems from '../components/Dashboard/AdminDash/AllItems'
 import StripePay from '../components/Dashboard/Payment/StripePay'
-
+import CartPage from "../components/Dashboard/CartPage"
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -38,24 +38,38 @@ export const router = createBrowserRouter([
   },
 
   {
-    path: '/dash',
-    element: <Container><Dashboard></Dashboard></Container>,
+    path: '/dashboard',
+    element: <Dashboard></Dashboard>,
+
+    children: [
+      {
+        path: '/dashboard',
+        element: <CartPage></CartPage>
+        ,
+      },
+      {
+
+        path: '/dashboard/pay',
+        element: <StripePay></StripePay>,
+      },
+
+    ],
 
   },
+
+
+
   {
     path: '/users',
     element: <AdminRoute><AllUsers></AllUsers></AdminRoute>,
   },
 
- {
+  {
     path: '/items',
     element: <AllItems></AllItems>,
   },
 
- {
-    path: '/pay',
-    element: <StripePay></StripePay>,
-  },
+
 
 
 

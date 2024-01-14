@@ -22,7 +22,7 @@ const NavBar = () => {
             <li><Link to="/menu">Our Menu</Link></li>
             <li><Link to="/order">Order Food</Link></li>
             {user && isAdmin && <li><Link to="/dashboard/adminHome">Dashboard</Link></li>}
-            {user && !isAdmin && <li><Link to="/dashboard/userHome">Dashboard</Link></li>}
+            {user && !isAdmin && <li><Link to="/dashboard">Dashboard</Link></li>}
             <li>
                 <Link to="/dashboard/cart">
                     <button className="btn btn-cart h-3">
@@ -43,7 +43,7 @@ const NavBar = () => {
     );
 
     return (
-        <div className="navbar fixed z-10 bg-opacity-30 w-full h-[60px] bg-black text-white">
+        <div className="navbar  z-10 bg-opacity-90 w-full h-[60px] bg-black text-white">
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">

@@ -1,11 +1,11 @@
 // src/pages/CartPage.js
-import React from 'react';
 import useCart from '../../hooks/useCart';
 import { MdDelete } from 'react-icons/md';
 import Swal from 'sweetalert2'
 import AxiosBase from '../../ServerConfig/AxiosConfig';
+import { Link } from 'react-router-dom';
 const CartPage = () => {
-    const [cart,refatch] = useCart();
+    const [cart, refatch] = useCart();
 
     const handleDeleteItem = (id) => {
         Swal.fire({
@@ -29,7 +29,7 @@ const CartPage = () => {
 
                     }
                 }
-               )
+                )
 
             }
         });
@@ -39,10 +39,7 @@ const CartPage = () => {
 
     const totalPrice = cart.reduce((total, item) => total + item.price, 0).toFixed(2);
 
-    const handlePay = () => {
-        // You can implement the logic to handle the payment
-        console.log('Processing payment...');
-    };
+
 
     return (
         <div>
@@ -53,12 +50,14 @@ const CartPage = () => {
                     <p className='text-xl font-semibold'>Total Items: {totalItems}</p>
                     <p className='text-xl font-semibold'>Total Price: ${totalPrice}</p>
                 </div>
-                <button
-                    onClick={handlePay}
-                    className="bg-green-500 text-white px-4 py-2 w-[120px] rounded hover:bg-green-600"
-                >
-                    Pay
-                </button>
+                <Link to='/dashboard/pay'>
+                    <button
+                        className="bg-green-500 text-white px-4 py-2 w-[120px] rounded hover:bg-green-600"
+                    >
+                        Pay
+                    </button>
+
+                </Link>
             </div>
 
             {/* Table to show items in the cart */}
