@@ -5,7 +5,6 @@ import ErrorPage from '../pages/ErrorPage'
 import Login from '../pages/Login/Login'
 import SignUp from '../pages/SignUp/SignUp'
 import Menu from '../pages/Menu/Menu'
-import Container from '../components/Shared/Container'
 import OrderFood from '../pages/Order/OrderFood'
 import Dashboard from '../components/Dashboard/Dashboard'
 import AllUsers from '../components/Dashboard/AdminDash/AllUsers'
@@ -13,6 +12,7 @@ import AdminRoute from './AdminRoute'
 import AllItems from '../components/Dashboard/AdminDash/AllItems'
 import StripePay from '../components/Dashboard/Payment/StripePay'
 import CartPage from "../components/Dashboard/CartPage"
+import PaymentHistory from '../pages/Dashboard/PaymentHistory/PaymentHistory'
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -52,6 +52,11 @@ export const router = createBrowserRouter([
         path: '/dashboard/pay',
         element: <StripePay></StripePay>,
       },
+       
+       {
+            path: '/dashboard/paymentHistory',
+          element: <PaymentHistory></PaymentHistory>
+        },
 
     ],
 

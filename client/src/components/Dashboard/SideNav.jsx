@@ -1,12 +1,14 @@
 import { FaAd, FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaSearch, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import useCart from "../../hooks/useCart";
+import useAdmin from "../../hooks/useAdmin";
 
 
 const SideNav= () => {
 
-    // TODO: get isAdmin value from the database
-    // const [isAdmin] = useAdmin();
-    const isAdmin=true
+    const [cart] = useCart();
+
+    const [isAdmin] = useAdmin();
     return (
         <div className="flex">
             {/* dashboard side bar */}
@@ -43,7 +45,7 @@ const SideNav= () => {
                             :
                             <>
                                 <li>
-                                    <NavLink to="/dashboard/userHome">
+                                    <NavLink to="/dashboard">
                                         <FaHome></FaHome>
                                         User Home</NavLink>
                                 </li>
@@ -63,9 +65,9 @@ const SideNav= () => {
                                         Add a Review</NavLink>
                                 </li>
                                 <li>
-                                    <NavLink to="/dashboard/bookings">
+                                    <NavLink to="/dashboard/paymentHistory">
                                         <FaList></FaList>
-                                        My Bookings</NavLink>
+                                        Payment History</NavLink>
                                 </li>
                             </>
                     }
@@ -77,7 +79,7 @@ const SideNav= () => {
                             Home</NavLink>
                     </li>
                     <li>
-                        <NavLink to="/order/salad">
+                        <NavLink to="/order">
                             <FaSearch></FaSearch>
                             Menu</NavLink>
                     </li>
