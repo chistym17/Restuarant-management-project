@@ -20,4 +20,3 @@
 6. **Login/Signup:** User authentication for a personalized experience.
 
 ---
-
