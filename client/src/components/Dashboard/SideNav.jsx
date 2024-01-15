@@ -1,4 +1,4 @@
-import { FaAd, FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaSearch, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa";
+import { FaAd, FaBook, FaEnvelope, FaHome, FaList, FaSearch, FaShoppingCart, FaUsers, FaUtensils } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 import useAdmin from "../../hooks/useAdmin";
@@ -44,18 +44,10 @@ const SideNav= () => {
                         </>
                             :
                             <>
+                             
+                            
                                 <li>
                                     <NavLink to="/dashboard">
-                                        <FaHome></FaHome>
-                                        User Home</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/dashboard/reservation">
-                                        <FaCalendar></FaCalendar>
-                                        Reservation</NavLink>
-                                </li>
-                                <li>
-                                    <NavLink to="/dashboard/cart">
                                         <FaShoppingCart></FaShoppingCart>
                                         My Cart ({cart.length})</NavLink>
                                 </li>
