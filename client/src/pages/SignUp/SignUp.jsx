@@ -5,9 +5,12 @@ import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
 import { app } from '../../firebase/firebase.config'
 import Swal from 'sweetalert2'
 import NavBar from '../../components/Shared/Navbar/Navbar'
+import { useContext } from 'react'
+import { AuthContext } from '../../providers/AuthProvider'
 
 const SignUp = () => {
 const auth=getAuth(app)
+const {signInWithGoogle}=useContext(AuthContext)
 
 
 const handleSubmit=(e)=>{
@@ -33,6 +36,21 @@ AxiosBase.post('/users',user)
 })
 }
 
+const handleGoogleLogin=()=>{
+
+signInWithGoogle()
+.then(()=>
+{
+Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Signup Successful",
+  showConfirmButton: false,
+  timer: 1500
+});
+
+})
+}
 
 
   return (
@@ -112,6 +130,7 @@ AxiosBase.post('/users',user)
             <button
               type='submit'
               className='bg-rose-500 w-full rounded-md py-3 text-white'
+              onClick={handleSubmit}
             >
               Continue
             </button>
@@ -131,7 +150,7 @@ AxiosBase.post('/users',user)
         <div className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
           <FcGoogle size={32} />
 
-          <p>Continue with Google</p>
+          <p onClick={handleGoogleLogin}>Continue with Google</p>
         </div>
         <p className='px-6 text-sm text-center text-gray-400'>
           Already have an account?{' '}
