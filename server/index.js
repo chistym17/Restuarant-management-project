@@ -10,7 +10,7 @@ const port = process.env.PORT || 8000
 const stripe = require("stripe")(process.env.Payment_Key)
 // middleware
 const corsOptions = {
-  origin: ['http://localhost:5173', 'http://localhost:5174'],
+  origin: 'https://restaurant-management-e7db6.firebaseapp.com',
   credentials: true,
   optionSuccessStatus: 200,
 }
@@ -115,7 +115,6 @@ app.post("/create-payment-intent", async (req, res) => {
       const payment = req.body;
       const paymentResult = await paymentDB.insertOne(payment);
 
-      //  carefully delete each item from the cart
       console.log('payment info', payment);
       const query = {
         _id: {
@@ -128,7 +127,14 @@ app.post("/create-payment-intent", async (req, res) => {
       res.send({ paymentResult, deleteResult });
     })
 
-
+    app.get('/payments/:email', verifyToken, async (req, res) => {
+      const query = { email: req.params.email }
+      if (req.params.email !== req.decoded.email) {
+        return res.status(403).send({ message: 'forbidden access' });
+      }
+      const result = await paymentDB.find(query).toArray();
+      res.send(result);
+    })
 
 
 ///////////////////////////////////////////////////////////////////
