@@ -2,6 +2,8 @@ import { Link } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import { useContext } from 'react'
 import { AuthContext } from '../../providers/AuthProvider'
+import Swal from 'sweetalert2'
+import NavBar from '../../components/Shared/Navbar/Navbar'
 
 const Login = () => {
 const {signInWithGoogle,signIn}=useContext(AuthContext)
@@ -12,13 +14,32 @@ const form=e.target
 const email=form.email.value
 const password=form.password.value
 signIn(email,password)
-.then(res=>console.log(res.data))
+.then(()=>
+{
+Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Login Successful",
+  showConfirmButton: false,
+  timer: 1500
+});
+})
 }
 
 const handleGoogleLogin=()=>{
 
 signInWithGoogle()
-.then(res=>console.log(res.data))
+.then(()=>
+{
+Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Login Successful",
+  showConfirmButton: false,
+  timer: 1500
+});
+
+})
 }
 
 
@@ -26,7 +47,10 @@ signInWithGoogle()
 
 
   return (
-    <div className='flex justify-center items-center min-h-screen mt-4 mb-4'>
+
+   <div>
+<NavBar></NavBar>
+ <div className='flex justify-center items-center min-h-screen mt-4 mb-4'>
       <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
         <div className='mb-8 text-center'>
           <h1 className='my-3 text-4xl font-bold'>Log In</h1>
@@ -110,6 +134,13 @@ signInWithGoogle()
         </p>
       </div>
     </div>
+
+
+
+
+
+</div>
+
   )
 }
 

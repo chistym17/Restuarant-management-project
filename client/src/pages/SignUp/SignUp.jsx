@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
-import useAuth from '../../hooks/useAuth'
 import AxiosBase from '../../ServerConfig/AxiosConfig'
 import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth'
 import { app } from '../../firebase/firebase.config'
+import Swal from 'sweetalert2'
+import NavBar from '../../components/Shared/Navbar/Navbar'
 
 const SignUp = () => {
 const auth=getAuth(app)
@@ -18,17 +19,28 @@ const handleSubmit=(e)=>{
     const user={name,email,password}
 
 createUserWithEmailAndPassword(auth,email,password)
-.then(res=>{
+.then(()=>{
 AxiosBase.post('/users',user)
-.then(res=>console.log(res.data))
-console.log(res)
+.then(()=>{
+  Swal.fire({
+  position: "top-end",
+  icon: "success",
+  title: "Signup Successful",
+  showConfirmButton: false,
+  timer: 1500
+});
+})
 })
 }
 
 
 
   return (
-    <div className='flex justify-center items-center min-h-screen'>
+<div >
+
+<NavBar></NavBar>
+
+    <div className='flex justify-center items-center min-h-screen mt-5'>
       <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
         <div className='mb-8 text-center'>
           <h1 className='my-3 text-4xl font-bold'>Sign Up</h1>
@@ -133,6 +145,11 @@ console.log(res)
         </p>
       </div>
     </div>
+
+
+
+</div>
+
   )
 }
 

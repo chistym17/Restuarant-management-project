@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const AxiosSecure = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: 'https://flavourfusion.onrender.com/',
 });
 
 AxiosSecure.interceptors.request.use(
